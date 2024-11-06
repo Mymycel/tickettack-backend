@@ -56,15 +56,13 @@ router.get('/buckets', (req, res) =>{
     })
 })
 
-router.post('/reservation', (req, res) =>{
+/*router.post('/reservation', (req, res) =>{
   const { departure, arrival, date } = req.body
   Reservation.save()
   .then(data =>{
-    res.json({ result: true, reservation: data });
+    res.json({ result: true, reservations: data });
   })
-})
-
-
+})*/
 
 
 
