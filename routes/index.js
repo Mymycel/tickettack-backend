@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
+const mongoose =  require('mongoose');
 const Trip = require('../models/trips')
+const Bucket = require('../models/buckets')
+
 const { displayDate } = require('../modules/date');
 
 /* GET home page. */
@@ -30,7 +33,20 @@ router.get('/trips/:departure/:arrival/:date',(req, res) =>{
     })
   })
     
-  
+  router.post('/buckets', (req, res) =>{
+    const { departure, arrival, date } = req.body
 
+    if(departure && arrival && date){
+      const newBucket = new Bucket({departure, arrival, date})
+      newBucket.save()
+    .then(data =>{
+      res.json({ result: true, buckets: data });
+    })
+  } else {
+  res.json({ result: false, error: 'Missing data' });
+  }
+})
+  
+             
 
 module.exports = router;
